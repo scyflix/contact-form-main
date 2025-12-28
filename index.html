@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Contact form</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&display=swap");
+
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Karla", sans-serif;
+        background: hsl(148, 38%, 91%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      main {
+        background: hsl(0, 0%, 100%);
+        color: hsl(187, 24%, 22%);
+        max-width: 700px;
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        margin: 80px 60px;
+        border-radius: 12px;
+      }
+      form {
+        width: 100%;
+        height: 100%;
+      }
+      .required {
+        color: hsl(0, 66%, 54%);
+      }
+      .doubleInput {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+      }
+      input {
+        outline: 0;
+        padding: 0 20px;
+        border: 1px solid hsl(186, 15%, 59%);
+      }
+      input:hover,
+      textarea:hover {
+        border: 2px solid hsl(169, 82%, 27%);
+      }
+      input:focus,
+      textarea:focus {
+        border: 2px solid hsl(169, 82%, 27%);
+      }
+      input[type="text"],
+      input[type="email"] {
+        width: 100%;
+        height: 40px;
+        border-radius: 4px;
+        margin: 15px 0;
+      }
+      fieldset {
+        width: 100%;
+        padding: 0;
+      }
+      input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        margin: 0 10px;
+      }
+      .radioField {
+        width: 100%;
+        height: 40px;
+        margin: 10px 0;
+        border-radius: 4px;
+        padding: 5px 0;
+        display: flex;
+        align-items: center;
+        border: 1px solid hsl(186, 15%, 59%);
+      }
+      .radioGroup {
+        border: 0;
+      }
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin: 10px;
+      }
+      label,
+      legend {
+        font-size: 16px;
+      }
+      textarea {
+        width: 100%;
+        height: 100px;
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+      button {
+        display: block;
+        width: 100%;
+        height: 40px;
+        border-radius: 4px;
+        border: 0;
+        margin: 20px 0;
+        background: hsl(169, 82%, 27%);
+        color: hsl(0, 0%, 100%);
+        font-weight: 600;
+        font-size: 17px;
+      }
+      .error {
+        color: hsl(0, 66%, 54%);
+        margin: 0;
+        display: none;
+      }
+      .error.errorShow {
+        display: block;
+      }
+
+      #toast {
+        position: fixed;
+        top: -100%;
+        width: 400px;
+        background: hsl(187, 24%, 22%);
+        padding: 0 20px;
+        color: hsl(148, 38%, 91%);
+        border-radius: 12px;
+        z-index: 2;
+        transition: top 0.6s ease;
+      }
+      #toast.showToast {
+        top: 10px;
+      }
+      #toast.hideToast {
+        top: -100%;
+      }
+      @media (max-width: 600px) {
+        main {
+          width: 90%;
+          margin: 10px 0;
+        }
+        .doubleInput {
+          flex-direction: column;
+          gap: 5px;
+        }
+        input {
+          padding: 0 10px;
+        }
+        textarea {
+          height: 150px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="toast">
+      <h2>Message sent!</h2>
+      <p>Thanks for completing the form. We'll be in touch soon!</p>
+    </div>
+    <main role="main">
+      <h1>Contact Us</h1>
+      <form role="form">
+        <div class="doubleInput">
+          <div class="field">
+            <label for="firstName"
+              >First Name <span class="required">*</span></label
+            >
+            <input type="text" id="firstName" name="firstName" required />
+            <p class="nameError error">This field is required</p>
+          </div>
+
+          <div class="field">
+            <label for="lastName"
+              >Last Name <span class="required">*</span></label
+            >
+            <input type="text" id="lastName" name="lastName" required />
+            <p class="nameError error">This field is required</p>
+          </div>
+        </div>
+
+        <label for="email">Email <span class="required">*</span></label>
+        <input type="email" name="email" id="email" required />
+        <p class="emailError error">Please enter a valid email address</p>
+
+        <fieldset class="radioGroup">
+          <legend>Query Type <span class="required">*</span></legend>
+          <div class="doubleInput">
+            <div class="radioField">
+              <input
+                type="radio"
+                name="queryType"
+                id="generalEnquiry"
+                value="general"
+                required
+              />
+              <label for="generalEnquiry">General Enquiry</label>
+            </div>
+
+            <div class="radioField">
+              <input
+                type="radio"
+                name="queryType"
+                id="supportRequest"
+                value="support"
+                required
+              />
+              <label for="supportRequest">Support Request</label>
+            </div>
+          </div>
+          <p class="radioError error">Please select a query type</p>
+        </fieldset>
+
+        <label for="message">Message <span class="required">*</span></label>
+        <textarea name="message" id="message" required></textarea>
+        <p class="messageError error">This field is required</p>
+
+        <input type="checkbox" name="consent" id="consent" required />
+        <label for="consent"
+          >I consent to being contacted by the team
+          <span class="required">*</span></label
+        >
+        <p class="consentError error">
+          To submit this form, please consent to being contacted
+        </p>
+
+        <button id="btn" type="submit">Submit</button>
+      </form>
+    </main>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+      Coded by <a href="#">Your Name Here</a>.
+    </div>
+    <script>
+      const btn = document.getElementById("btn");
+      const toast = document.getElementById("toast");
+      const nameError = document.querySelectorAll(".nameError");
+      const emailError = document.querySelector(".emailError");
+      const radioError = document.querySelector(".radioError");
+      const messageError = document.querySelector(".messageError");
+      const consentError = document.querySelector(".consentError");
+
+      function validateForm() {
+        let isValid = true;
+
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const queryType = document.querySelector(
+          'input[name="queryType"]:checked'
+        );
+        const message = document.getElementById("message").value.trim();
+        const consent = document.querySelector('input[name="consent"]:checked');
+
+        if (!firstName || !lastName) {
+          nameError.forEach((error) => {
+            error.classList.add("errorShow");
+          });
+          isValid = false;
+        } else {
+          nameError.forEach((error) => {
+            error.classList.remove("errorShow");
+          });
+        }
+        if (!email.includes("@")) {
+          emailError.classList.add("errorShow");
+          isValid = false;
+        } else {
+          emailError.classList.remove("errorShow");
+        }
+        if (!queryType) {
+          radioError.classList.add("errorShow");
+          isValid = false;
+        } else {
+          radioError.classList.remove("errorShow");
+        }
+        if (!message) {
+          messageError.classList.add("errorShow");
+          isValid = false;
+        } else {
+          messageError.classList.remove("errorShow");
+        }
+        if (!consent) {
+          consentError.classList.add("errorShow");
+          isValid = false;
+        } else {
+          consentError.classList.remove("errorShow");
+        }
+        console.log(isValid);
+        return isValid;
+      }
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (!validateForm()) {
+          return;
+        }
+
+        toast.classList.add("showToast");
+
+        setTimeout(() => {
+          toast.classList.remove("showToast");
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>
